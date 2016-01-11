@@ -38,9 +38,9 @@ require "slim"
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-# configure :development do
-#   activate :livereload
-# end
+configure :development do
+  activate :livereload
+end
 
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -48,6 +48,7 @@ require "slim"
 #     "Helping"
 #   end
 # end
+set :slim, { :pretty => true, :sort_attrs => false, :format => :html5 }
 
 set :css_dir, 'stylesheets'
 
@@ -72,3 +73,16 @@ configure :build do
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
 end
+
+activate :deploy do |deploy|
+  deploy.method = :rsync
+  deploy.host   = 'host'
+  deploy.path   = '/var/www/xxx'
+  deploy.build_before = true # default: false
+  # Optional Settings
+  # deploy.user  = 'user' # no default
+  deploy.port  = 22 # ssh port, default: 22
+  deploy.clean = true # remove orphaned files on remote host, default: false
+  # deploy.flags = '-rltgoDvzO --no-p --del' # add custom flags, default: -avz
+end
+
