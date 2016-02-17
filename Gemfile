@@ -20,3 +20,6 @@ gem 'middleman-deploy', '~> 1.0'
 
 gem "jquery-middleman"
 gem 'underscore-rails'
+
+gem 'bootstrap-sass', :require => false
+
